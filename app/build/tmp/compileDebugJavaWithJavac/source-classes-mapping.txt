@@ -1,0 +1,2 @@
+vn/edu/usth/weather/BuildConfig.java
+ vn.edu.usth.weather.BuildConfig
