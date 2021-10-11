@@ -58,25 +58,32 @@ public class ForecastFragment extends Fragment {
         }
     }
 
-    @Override
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//        // Inflate the layout for this fragment
+//
+//        LinearLayout ll = new LinearLayout(getActivity());
+//        ll.setBackgroundColor(0x200000FF);
+//        ll.setOrientation(LinearLayout.VERTICAL);
+//
+//
+//        TextView thusday = new TextView((getActivity()));
+//        thusday.setText("Thusday is a sunny day!");
+//        ImageView sunny = new ImageView(getActivity());
+//        sunny.setImageResource(R.drawable.sunny);
+//
+//        ll.addView(thusday);
+//        ll.addView(sunny);
+//
+//
+//        return ll;
+//    }
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
-        LinearLayout ll = new LinearLayout(getActivity());
-        ll.setBackgroundColor(0x200000FF);
-        ll.setOrientation(LinearLayout.VERTICAL);
-
-
-        TextView thusday = new TextView((getActivity()));
-        thusday.setText("Thusday is a sunny day!");
-        ImageView sunny = new ImageView(getActivity());
-        sunny.setImageResource(R.drawable.sunny);
-
-        ll.addView(thusday);
-        ll.addView(sunny);
-
-
-        return ll;
+// Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_forecast, container, false);
     }
+
 }
