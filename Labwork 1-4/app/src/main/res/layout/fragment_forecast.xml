@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ForecastFragment">
+
+    &lt;!&ndash; TODO: Update blank fragment layout &ndash;&gt;
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/hello_blank_fragment" />
+
+</FrameLayout>-->
+
+<LinearLayout android:layout_width="720px"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<Button
+    android:id="@+id/button"
+    android:layout_width="0px"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:text="Logout" />
+<Button
+android:id="@+id/button2"
+android:layout_width="100px"
+android:layout_height="wrap_content"
+android:text="Restart" />
+    <Button
+android:id="@+id/button3"
+android:layout_width="0px"
+android:layout_height="wrap_content"
+android:layout_weight="1"
+android:text="Poweroff" />
+</LinearLayout>
