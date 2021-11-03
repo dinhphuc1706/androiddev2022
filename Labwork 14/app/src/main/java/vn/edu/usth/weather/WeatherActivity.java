@@ -1,0 +1,219 @@
+package vn.edu.usth.weather;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.os.PersistableBundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.google.android.material.tabs.TabLayout;
+
+public class WeatherActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_weather);
+
+        PagerAdapter adapter = new HomeFragmentPagerAdapter(
+                getSupportFragmentManager());
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        pager.setOffscreenPageLimit(3);
+        pager.setAdapter(adapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab);
+        tabLayout.setupWithViewPager(pager);
+
+
+
+        Log.i("Weather", "OnCreate() Called");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i("Weather", "OnStart() Called");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("Weather", "OnStop() Called");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i("Weather", "OnDestroy() Called");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("Weather", "OnPause() Called");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("Weather", "OnResume() Called");
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+        Log.i("Weather", "OnCreate() Called");
+    }
+
+    /*OptionsMenu*/
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater1 = getMenuInflater();
+        inflater1.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.refresh:
+                /*Toast.makeText(this, "Refreshing", Toast.LENGTH_SHORT).show();*/
+                /*
+                //Create Thread
+                Thread t = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+// this method is run in a worker thread
+                        try {
+// wait for 5 seconds to simulate a long network access
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+// Assume that we got our data from server
+                        Bundle bundle = new Bundle();
+                        bundle.putString("server_response", "some sample json here");
+// notify main thread
+                        Message msg = new Message();
+                        msg.setData(bundle);
+                        handler.sendMessage(msg);
+                    }
+                });
+                t.start();*/
+
+                //Do AsyncTasks
+                MyAsyncTasks myAsyncTasks = new MyAsyncTasks();
+                myAsyncTasks.execute();
+
+                //End
+                return true;
+
+            case R.id.settings:
+                startActivity(new Intent(WeatherActivity.this, PrefActivity.class));;
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /*HomePager*/
+    public class HomeFragmentPagerAdapter extends FragmentPagerAdapter {
+        private final int PAGE_COUNT = 3;
+        private String titles[] = new String[]{"Ho Chi Minh City", "Ha Noi", "Da Nang"};
+
+
+        public HomeFragmentPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public int getCount() {
+            return PAGE_COUNT; // number of pages for a ViewPager
+        }
+
+        @Override
+        public Fragment getItem(int page) {
+// returns an instance of Fragment corresponding to the specified page
+            switch (page) {
+                case 0:
+                    return new WeatherAndForecastFragment();
+                case 1:
+                    return new WeatherAndForecastFragment();
+                case 2:
+                    return new WeatherAndForecastFragment();
+            }
+            return new Fragment(); // failsafe
+        }
+
+        @Override
+        public CharSequence getPageTitle(int page) {
+            return titles[page];
+        }
+    }
+
+/*
+
+    //Handler Network Request
+    final Handler handler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(Message msg) {
+// This method is executed in main thread
+            String content = msg.getData().getString("server_response");
+            Toast.makeText(WeatherActivity.this, content, Toast.LENGTH_SHORT).show();
+        }
+    };
+*/
+
+    //Make AsyncTasks Class
+    public class MyAsyncTasks extends AsyncTask<String, String, String> {
+        @Override
+        protected void onPreExecute() {
+// do some preparation here, if needed
+        }
+        @Override
+        protected String doInBackground(String... params) {
+// This is where the worker thread's code is executed
+// params are passed from the execute() method call
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+        @Override
+        protected void onProgressUpdate(String... values) {
+// This method is called in the main thread, so it's possible
+// to update UI to reflect the worker thread progress here.
+// In a network access task, this should update a progress bar
+// to reflect how many percent of data has been retrieved
+        }
+        @Override
+        protected void onPostExecute(String bitmap) {
+            Toast.makeText(WeatherActivity.this, "some sample json here", Toast.LENGTH_SHORT).show();
+// This method is called in the main thread. After #doInBackground returns
+// the bitmap data, we simply set it to an ImageView using ImageView.setImageBitmap()
+        }
+    }
+
+
+
+}

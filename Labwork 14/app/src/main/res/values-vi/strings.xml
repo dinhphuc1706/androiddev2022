@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">USTH Weather</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="paris">Paris</string>
+    <string name="temp">"12C \nNhiều Mây"</string>
+
+    <string name="mon">Thứ Hai</string>
+    <string name="sunny">Nắng</string>
+    <string name="tsunny">30C-35C</string>
+
+    <string name="tue">Thứ Ba</string>
+    <string name="rainy">Mưa</string>
+    <string name="trainy">20C-25C</string>
+
+    <string name="wed">Thứ Tư</string>
+    <string name="thun">Mưa Sấm Sét</string>
+    <string name="tthun">16C-23C</string>
+
+    <string name="thu">Thứ Năm</string>
+    <string name="cloud">Có Mây Một Phần</string>
+    <string name="tcloud">23C-27C</string>
+
+    <string name="fri">Thứ Sáu</string>
+    <string name="snowy">Có Tuyết Rơi</string>
+    <string name="tsnowy">0C-5C</string>
+
+    <string name="sat">Thứ Bảy</string>
+    <string name="trainy2">18C-25C</string>
+
+    <string name="sun">Chủ Nhật</string>
+    <string name="tsunny2">28C-33C</string>
+
+    <string name="refresh">Làm Mới</string>
+    <string name="settings">Cài Đặt</string>
+</resources>
